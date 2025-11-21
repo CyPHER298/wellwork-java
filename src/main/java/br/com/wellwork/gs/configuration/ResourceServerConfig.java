@@ -1,13 +1,9 @@
-package com.example.java_advanced.configurations;
+package br.com.wellwork.gs.configuration;
 
-import br.com.wellwork.gs.configuration.CompositeGrantedAuthoritiesConverter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -31,9 +27,9 @@ public class ResourceServerConfig {
         http
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/fiap/aluno/**")
-                                .hasAnyRole("ALUNO", "ADMIN")
-                                .requestMatchers("/fiap/**")
+                                .requestMatchers("/api/usuario/**")
+                                .hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/api/**")
                                 .hasRole("ADMIN")
 
                                 .anyRequest()
