@@ -27,32 +27,42 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     @GetMapping
-    public String getToken(Authentication authentication) {
-        return authentication.getName();
+    public ResponseEntity<String> getToken(Authentication authentication) {
+        if (authentication == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Usuario no encontrado");
+        }
+        return ResponseEntity.ok(authentication.getName());
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginRequestDTO body) {
         UsernamePasswordAuthenticationToken userPass = new UsernamePasswordAuthenticationToken(body.email(), body.password());
         Authentication authentication = authenticationManager.authenticate(userPass);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return null;
+        String token =authentication.getName();
+        return ResponseEntity.ok(LoginResponseDTO.ofToken(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity<RegisterResponseDTO> register(@RequestBody @Valid RegisterRequestDTO body) {
-        Usuario usuario = new Usuario();
-        usuario.setSenha(passwordEncoder.encode(body.senha()));
-        usuario.setEmail(body.email());
-        usuario.setNome(body.nome());
-        usuario.setCargo(body.cargo());
+
+        if (usuarioRepository.existsByEmail(body.email())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+        Usuario usuario = Usuario.builder()
+                .nome(body.nome())
+                .email(body.email())
+                .senha(passwordEncoder.encode(body.senha()))
+                .cargo(body.cargo())
+                .build();
 
         usuarioRepository.save(usuario);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new RegisterResponseDTO(usuario.getNome(), usuario.getEmail()));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(RegisterResponseDTO.of(usuario.getNome(), usuario.getEmail()));
     }
-
-
-
-
 }

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
     private final ConcatIdUsuarioService concatIdUsuarioService;
-    private final UsuarioService usuarioService;
 
     @GetMapping("/{id}")
     @Operation(
@@ -40,9 +39,8 @@ public class UsuarioController {
                     )
             }
     )
-    public String getAluno(Authentication authentication, @PathVariable String id) {
-        String execute = concatIdUsuarioService.execute(id);
-        return execute.concat("1");
+    public String getUsuario(Authentication authentication, @PathVariable String id) {
+        return concatIdUsuarioService.execute(id);
     }
 
 }
