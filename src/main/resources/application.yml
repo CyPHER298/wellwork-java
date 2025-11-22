@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    show-sql: true
+  application:
+    name: java-advanced
+  profiles:
+    active: ${PROFILE:local}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth-server:8081
+
+security:
+  enabled: true
+

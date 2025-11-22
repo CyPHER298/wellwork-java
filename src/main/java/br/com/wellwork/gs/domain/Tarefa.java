@@ -28,7 +28,6 @@ public class Tarefa {
     private EnumStatusTarefa status;
 
     @OneToMany(
-            mappedBy = "usuario",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )

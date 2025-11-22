@@ -1,11 +1,10 @@
 package br.com.wellwork.gs.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.wellwork.gs.domain.enums.EnumCargoUsuario;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -25,12 +24,17 @@ public class Usuario implements UserDetails {
     private String nome;
     private String email;
     private String senha;
-    private String cargo;
+    @Enumerated(EnumType.STRING)
+    private EnumCargoUsuario cargo;
     private String acessibilidade;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        if (this.cargo == EnumCargoUsuario.GESTOR) {
+            return List.of(new SimpleGrantedAuthority("ROLE_GESTOR"), new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     }
 
     @Override
@@ -40,6 +44,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nome;
+        return email;
     }
 }
