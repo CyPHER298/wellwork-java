@@ -36,7 +36,7 @@ public class AuthController {
         UsernamePasswordAuthenticationToken userPass = new UsernamePasswordAuthenticationToken(body.email(), body.password());
         Authentication authentication = authenticationManager.authenticate(userPass);
 
-        return null;
+        return ResponseEntity.ok(new LoginResponseDTO(getToken(authentication)));
     }
 
     @PostMapping("/register")
