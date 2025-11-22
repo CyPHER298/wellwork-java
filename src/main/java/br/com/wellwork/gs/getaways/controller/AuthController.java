@@ -6,6 +6,7 @@ import br.com.wellwork.gs.getaways.dto.request.RegisterRequestDTO;
 import br.com.wellwork.gs.getaways.dto.response.LoginResponseDTO;
 import br.com.wellwork.gs.getaways.dto.response.RegisterResponseDTO;
 import br.com.wellwork.gs.getaways.repository.UsuarioRepository;
+import br.com.wellwork.gs.service.TokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class AuthController {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
     @GetMapping
     public ResponseEntity<String> getToken(Authentication authentication) {

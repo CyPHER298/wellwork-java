@@ -21,7 +21,7 @@ import java.util.List;
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
