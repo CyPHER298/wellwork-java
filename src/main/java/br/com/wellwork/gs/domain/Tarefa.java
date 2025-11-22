@@ -10,6 +10,7 @@ import java.util.List;
 
 @With
 @Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor

@@ -12,6 +12,7 @@ import java.util.List;
 
 @With
 @Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -27,6 +28,12 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private EnumCargoUsuario cargo;
     private String acessibilidade;
+
+    public Usuario(String email, String senha, EnumCargoUsuario cargo) {
+        this.email = email;
+        this.senha = senha;
+        this.cargo = cargo;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
