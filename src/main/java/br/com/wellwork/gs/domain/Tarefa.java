@@ -16,16 +16,22 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Table(name = "tarefa")
 public class Tarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String titulo;
+
     private String descricao;
+
     private LocalDateTime dataHora;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private EnumStatusTarefa status;
 
     @OneToMany(

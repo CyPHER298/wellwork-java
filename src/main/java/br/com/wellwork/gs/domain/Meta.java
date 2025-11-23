@@ -11,13 +11,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Table(name = "meta")
 public class Meta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(nullable = false)
     private String titulo;
+
     private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -18,16 +18,27 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Table(name = "timer")
 public class Timer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String tipo;
+
+    @Column(nullable = false)
     private Duration duracao;
+
+    @Column(nullable = false)
     private LocalDateTime inicio;
+
+    @Column(nullable = false)
     private LocalDateTime fim;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private EnumStatusTimer status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

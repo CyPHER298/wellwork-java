@@ -12,14 +12,19 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Table(name = "lembrete")
 public class Lembrete {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String tipo;
+
+    @Column(nullable = false)
     private String sequencia;
+
     @Enumerated(EnumType.STRING)
     private EnumAtivoLembrete ativo;
 }
