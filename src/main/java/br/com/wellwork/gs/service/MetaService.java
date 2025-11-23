@@ -7,10 +7,7 @@ import br.com.wellwork.gs.getaways.dto.response.MetaResponseDTO;
 import br.com.wellwork.gs.getaways.repository.MetaRepository;
 import br.com.wellwork.gs.getaways.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +28,8 @@ public class MetaService {
     @Transactional
     public MetaResponseDTO criarMeta(CreateMetaRequestDTO body) {
         Usuario usuario = null;
-        if (body.usuarioId() != null) {
-            usuario = usuarioRepository.findById(body.usuarioId())
+        if (body.idUsuario() != null) {
+            usuario = usuarioRepository.findById(body.idUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         }
 
