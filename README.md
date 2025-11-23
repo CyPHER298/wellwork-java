@@ -7,6 +7,8 @@ Projeto tem foco em ajudar funcionarios com neurodivergencia, ajudando elas a fa
 Todos terão um botão escrito "ALERTA CRISE" que imediatamente chamará o gestor para ajuda do funcionário
 
 ![Vídeo Pitch](https://youtu.be/70Jxo2b_KCE)
+
+![Documentação da Ideia](./docs/doc_ideia_wellwork.pdf)
 ---
 
 ## 👥 **Integrantes do Grupo**
