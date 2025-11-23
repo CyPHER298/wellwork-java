@@ -7,7 +7,7 @@ spring:
     active: ${PROFILE:local}
 
 jwt:
-  secret: senha
+  secret: senha-super-secreta
   issuer: wellwork-gs
   expiration: 3600
 

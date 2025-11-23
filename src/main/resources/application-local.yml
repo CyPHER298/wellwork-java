@@ -17,4 +17,4 @@ service:
     concat-id-usuario: enabled
 
 security:
-  enabled: false
+  enabled: true
