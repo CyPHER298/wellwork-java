@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class UsuarioConfiguration {
 
     @Bean
-    @ConditionalOnProperty(prefix = "service.usuario", name = "concat-id-usuario", havingValue = "!enabled")
     public ConcatIdUsuarioService concatIdUsuarioService() {
         return new ConcatIdUsuarioService();
     }

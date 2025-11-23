@@ -16,5 +16,3 @@ service:
   usuario:
     concat-id-usuario: enabled
 
-security:
-  enabled: false
